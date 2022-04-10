@@ -18,7 +18,7 @@
 						"referenceName": "AzureSqlStudentRespTable",
 						"type": "DatasetReference"
 					},
-					"name": "sinkstudentresp"
+					"name": "sink1"
 				}
 			],
 			"transformations": [
@@ -57,7 +57,7 @@
 				"     httpMethod: 'POST',",
 				"     requestFormat: ['type' -> 'json'],",
 				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> restapi",
-				"azuresource sink(allowSchemaDrift: true,",
+				"restapi sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          studentid as integer",
@@ -69,7 +69,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sinkstudentresp"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
 			]
 		}
 	}
