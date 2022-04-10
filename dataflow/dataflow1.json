@@ -55,7 +55,7 @@
 				"     timeout: 30,",
 				"     httpMethod: 'POST',",
 				"     requestFormat: ['type' -> 'json'],",
-				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> restapi",
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'singleDocument']) ~> restapi",
 				"restapi sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
