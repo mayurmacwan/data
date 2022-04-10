@@ -1,0 +1,22 @@
+{
+	"name": "AzureSqlStudentRespTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lurn360db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "studentid",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "student_resp"
+		}
+	}
+}

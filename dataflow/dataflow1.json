@@ -12,7 +12,15 @@
 					"name": "azuresource"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlStudentRespTable",
+						"type": "DatasetReference"
+					},
+					"name": "sinkstudentresp"
+				}
+			],
 			"transformations": [
 				{
 					"name": "restapi",
@@ -48,7 +56,20 @@
 				"     timeout: 30,",
 				"     httpMethod: 'POST',",
 				"     requestFormat: ['type' -> 'json'],",
-				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> restapi"
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> restapi",
+				"azuresource sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          studentid as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkstudentresp"
 			]
 		}
 	}
