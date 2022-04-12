@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LookupDataFromSQL').output.value.item",
+						"value": "@activity('LookupDataFromSQL').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -63,7 +63,13 @@
 								"method": "POST",
 								"body": {
 									"studentid": "@variables('studentid')"
-								}
+								},
+								"linkedServices": [
+									{
+										"referenceName": "lurn360db",
+										"type": "LinkedServiceReference"
+									}
+								]
 							}
 						}
 					]
@@ -74,6 +80,9 @@
 			"studentid": {
 				"type": "String",
 				"defaultValue": "100"
+			},
+			"input": {
+				"type": "Array"
 			}
 		},
 		"annotations": []
