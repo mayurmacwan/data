@@ -64,19 +64,7 @@
 								"body": {
 									"value": "{\n\t\"studentid\": @item().studentid,\n\t\"courseid\": @item().courseid,\n\t\"status\": @item().status\n}",
 									"type": "Expression"
-								},
-								"linkedServices": [
-									{
-										"referenceName": "lurn360db",
-										"type": "LinkedServiceReference"
-									}
-								],
-								"datasets": [
-									{
-										"referenceName": "AzureSqlStudentTable",
-										"type": "DatasetReference"
-									}
-								]
+								}
 							}
 						}
 					]
