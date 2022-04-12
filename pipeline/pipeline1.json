@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LookupDataFromSQL').output",
+						"value": "@activity('LookupDataFromSQL').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
