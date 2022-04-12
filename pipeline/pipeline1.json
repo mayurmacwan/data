@@ -70,6 +70,12 @@
 				}
 			}
 		],
+		"variables": {
+			"studentid": {
+				"type": "String",
+				"defaultValue": "100"
+			}
+		},
 		"annotations": []
 	}
 }
