@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Script1').output.value",
+						"value": "@activity('Script1').output.resultSets",
 						"type": "Expression"
 					},
 					"isSequential": false,
