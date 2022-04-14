@@ -65,7 +65,7 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "select * from dbo.students"
+							"text": "select * From [dbo].[student]"
 						}
 					]
 				}
