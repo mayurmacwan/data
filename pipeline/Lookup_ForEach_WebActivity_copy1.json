@@ -1,0 +1,84 @@
+{
+	"name": "Lookup_ForEach_WebActivity_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEachStudentRecord",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Script1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Script1').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "WebCallAPI",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://prod-25.uksouth.logic.azure.com:443/workflows/40b603ee9a934c529114a24a6619e5c9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ctOc7eea4P2jAcd8GM9D4rln8JzidJxwRJACEDdQrpQ",
+								"method": "POST",
+								"body": {
+									"value": "{\"studentid\": @{item().studentid},\"courseid\": @{item().courseid}}",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Script1",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "lurn360db",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "select * from dbo.students"
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"studentid": {
+				"type": "String"
+			},
+			"input": {
+				"type": "Array"
+			}
+		},
+		"annotations": []
+	}
+}
