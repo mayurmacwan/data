@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "adf_pl_SQL_ForEach_Web",
 	"properties": {
 		"activities": [
 			{
