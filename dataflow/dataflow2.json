@@ -6,53 +6,37 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "AzureSqlStudentTable",
+						"referenceName": "RolesJson",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "RoleSyncJSON"
 				}
 			],
-			"sinks": [
-				{
-					"dataset": {
-						"referenceName": "AzureSqlStudentRespTable",
-						"type": "DatasetReference"
-					},
-					"name": "sink1"
-				}
-			],
+			"sinks": [],
 			"transformations": [
 				{
-					"name": "aggregate1"
+					"name": "AggBasedOnStudentId"
 				}
 			],
 			"scriptLines": [
 				"source(output(",
-				"          studentid as integer,",
-				"          courseid as integer,",
-				"          status as boolean",
+				"          APP_ROLE as string,",
+				"          CHANGE_DATE_TIME as string,",
+				"          CHANGE_TYPE as string,",
+				"          MDX_EMAIL_ADDRESS as string,",
+				"          MDX_USER_IDENTIFIER as string,",
+				"          ROW_ID_KEY as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     limit: 100,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source1",
-				"source1 aggregate(groupBy(courseid,",
-				"          studentid),",
-				"     student = collect(studentid)) ~> aggregate1",
-				"aggregate1 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     input(",
-				"          studentid as integer",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine',",
+				"     wildcardPaths:['*.json'],",
+				"     partitionBy('hash', 1)) ~> RoleSyncJSON",
+				"RoleSyncJSON aggregate(groupBy(MDX_USER_IDENTIFIER),",
+				"     roles = collect(@(approle=APP_ROLE, changetype=CHANGE_TYPE)),",
+				"     partitionBy('hash', 1)) ~> AggBasedOnStudentId"
 			]
 		}
 	}
