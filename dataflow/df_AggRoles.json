@@ -12,7 +12,15 @@
 					"name": "RoleSyncJSON"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "RolesJson",
+						"type": "DatasetReference"
+					},
+					"name": "AggregatedJson"
+				}
+			],
 			"transformations": [
 				{
 					"name": "AggBasedOnStudentId"
@@ -32,11 +40,15 @@
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine',",
-				"     wildcardPaths:['*.json'],",
+				"     wildcardPaths:['input.json'],",
 				"     partitionBy('hash', 1)) ~> RoleSyncJSON",
 				"RoleSyncJSON aggregate(groupBy(MDX_USER_IDENTIFIER),",
 				"     roles = collect(@(approle=APP_ROLE, changetype=CHANGE_TYPE)),",
-				"     partitionBy('hash', 1)) ~> AggBasedOnStudentId"
+				"     partitionBy('hash', 1)) ~> AggBasedOnStudentId",
+				"AggBasedOnStudentId sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> AggregatedJson"
 			]
 		}
 	}
