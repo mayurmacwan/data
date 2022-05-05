@@ -1,0 +1,41 @@
+{
+	"name": "AzureSQL_roleUpdate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lurn360db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ROW_ID_KEY",
+				"type": "varchar"
+			},
+			{
+				"name": "MDX_USER_IDENTIFIER",
+				"type": "varchar"
+			},
+			{
+				"name": "MDX_EMAIL_ADDRESS",
+				"type": "varchar"
+			},
+			{
+				"name": "APP_ROLE",
+				"type": "varchar"
+			},
+			{
+				"name": "CHANGE_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "CHANGE_DATE_TIME",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "roleupdate"
+		}
+	}
+}
