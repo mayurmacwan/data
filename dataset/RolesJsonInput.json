@@ -1,5 +1,5 @@
 {
-	"name": "RolesJson",
+	"name": "RolesJsonInput",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
