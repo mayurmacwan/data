@@ -42,7 +42,7 @@
 				"     documentForm: 'documentPerLine',",
 				"     wildcardPaths:['input.json'],",
 				"     partitionBy('hash', 1)) ~> RoleSyncJSON",
-				"RoleSyncJSON aggregate(groupBy(MDX_USER_IDENTIFIER),",
+				"RoleSyncJSON aggregate(groupBy(MDX_EMAIL_ADDRESS),",
 				"     roles = collect(@(approle=APP_ROLE, changetype=CHANGE_TYPE)),",
 				"     partitionBy('hash', 1)) ~> AggBasedOnStudentId",
 				"AggBasedOnStudentId sink(allowSchemaDrift: true,",
