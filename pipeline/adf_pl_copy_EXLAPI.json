@@ -148,6 +148,9 @@
 							"typeProperties": {
 								"url": "https://prod-25.uksouth.logic.azure.com:443/workflows/40b603ee9a934c529114a24a6619e5c9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ctOc7eea4P2jAcd8GM9D4rln8JzidJxwRJACEDdQrpQ",
 								"method": "POST",
+								"headers": {
+									"Content-Type": "application/xml"
+								},
 								"body": {
 									"value": "<?xml version=\"1.0\" encoding=\"utf-16\"?>\n<soapenv:Envelope xmlns:cam=\"http://campusm.gw.com/campusm\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n\t<soapenv:Header/>\n\t<soapenv:Body>\n\t\t<soapenv:addAppRoleRequest>\n\t\t\t<cam:orgCode>873</cam:orgCode>\n\t\t\t<cam:emailAddresses>\n\t\t\t\t<cam:emailAddress>@{item().MDX_USER_IDENTIFIER}</cam:emailAddress>\n\t\t\t</cam:emailAddresses>\n\t\t\t<cam:rolesToAdd>Student/Staff::Getting Started - UG on a UK campus</cam:rolesToAdd>\n\t\t\t<cam:rolesToRemove/>\n\t\t\t<cam:applyToAll>FALSE</cam:applyToAll>\n\t\t</soapenv:addAppRoleRequest>\n\t</soapenv:Body>\n</soapenv:Envelope>",
 									"type": "Expression"
