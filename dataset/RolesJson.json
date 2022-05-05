@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": "output"
+				"fileName": "input.json",
+				"container": "input"
 			}
 		},
 		"schema": {}
