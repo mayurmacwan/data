@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "RolesJson",
+						"referenceName": "RolesJsonInput",
 						"type": "DatasetReference"
 					},
 					"name": "RoleSyncJSON"
@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "RolesJson",
+						"referenceName": "RolesJsonOutput",
 						"type": "DatasetReference"
 					},
 					"name": "AggregatedJson"
