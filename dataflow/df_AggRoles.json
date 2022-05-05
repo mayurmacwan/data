@@ -14,9 +14,9 @@
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "RolesJsonOutput",
-						"type": "DatasetReference"
+					"linkedService": {
+						"referenceName": "AzureBlobStorage1",
+						"type": "LinkedServiceReference"
 					},
 					"name": "AggregatedJson"
 				}
@@ -47,6 +47,8 @@
 				"     partitionBy('hash', 1)) ~> AggBasedOnStudentId",
 				"AggBasedOnStudentId sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     format: 'json',",
+				"     container: 'output',",
 				"     truncate: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
