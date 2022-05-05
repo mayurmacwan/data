@@ -47,8 +47,10 @@
 				"     partitionBy('hash', 1)) ~> AggBasedOnStudentId",
 				"AggBasedOnStudentId sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     truncate: true,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> AggregatedJson"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> AggregatedJson"
 			]
 		}
 	}
