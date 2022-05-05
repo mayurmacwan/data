@@ -152,7 +152,7 @@
 									"Content-Type": "application/xml"
 								},
 								"body": {
-									"value": "<?xml version=\"1.0\" encoding=\"utf-16\"?>\n<soapenv:Envelope xmlns:cam=\"http://campusm.gw.com/campusm\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n\t<soapenv:Header/>\n\t<soapenv:Body>\n\t\t<soapenv:addAppRoleRequest>\n\t\t\t<cam:orgCode>873</cam:orgCode>\n\t\t\t<cam:emailAddresses>\n\t\t\t\t<cam:emailAddress>@{item().MDX_EMAIL_ADDRESS}</cam:emailAddress>\n\t\t\t</cam:emailAddresses>\n\t\t\t<cam:rolesToAdd>@{item().roles.approle}</cam:rolesToAdd>\n\t\t\t<cam:rolesToRemove/>\n\t\t\t<cam:applyToAll>FALSE</cam:applyToAll>\n\t\t</soapenv:addAppRoleRequest>\n\t</soapenv:Body>\n</soapenv:Envelope>",
+									"value": "<?xml version=\"1.0\" encoding=\"utf-16\"?>\n<soapenv:Envelope xmlns:cam=\"http://campusm.gw.com/campusm\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n\t<soapenv:Header/>\n\t<soapenv:Body>\n\t\t<soapenv:addAppRoleRequest>\n\t\t\t<cam:orgCode>873</cam:orgCode>\n\t\t\t<cam:emailAddresses>\n\t\t\t\t<cam:emailAddress>@{item().MDX_EMAIL_ADDRESS}</cam:emailAddress>\n\t\t\t</cam:emailAddresses>\n\t\t\t<cam:rolesToAdd>@{item().roles[1].approle}</cam:rolesToAdd>\n\t\t\t<cam:rolesToRemove/>\n\t\t\t<cam:applyToAll>FALSE</cam:applyToAll>\n\t\t</soapenv:addAppRoleRequest>\n\t</soapenv:Body>\n</soapenv:Envelope>",
 									"type": "Expression"
 								}
 							}
