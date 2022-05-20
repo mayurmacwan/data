@@ -1,0 +1,53 @@
+{
+	"name": "df_sql_cosmos",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlStudentTable",
+						"type": "DatasetReference"
+					},
+					"name": "deriveHashId"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "CosmosDbSqlApiCollection1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "deriveDHashId"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          studentid as integer,",
+				"          courseid as integer,",
+				"          status as boolean",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     partitionBy('hash', 1)) ~> deriveHashId",
+				"deriveHashId derive(hashid = sha2(512, studentid,courseid,status)) ~> deriveDHashId",
+				"deriveDHashId sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'document',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
