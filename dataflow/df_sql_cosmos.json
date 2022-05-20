@@ -38,15 +38,16 @@
 				"     format: 'table',",
 				"     partitionBy('hash', 1)) ~> deriveHashId",
 				"deriveHashId derive(hashid = sha2(512, studentid,courseid,status)) ~> deriveDHashId",
-				"deriveDHashId sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
+				"deriveDHashId sink(allowSchemaDrift: false,",
+				"     validateSchema: true,",
 				"     deletable:false,",
 				"     insertable:true,",
 				"     updateable:false,",
-				"     upsertable:false,",
+				"     upsertable:true,",
 				"     format: 'document',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
