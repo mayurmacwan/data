@@ -1,0 +1,48 @@
+{
+	"name": "debatchedDSv2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStoragev21",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Output",
+				"fileSystem": "splitting"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "1",
+				"type": "String"
+			},
+			{
+				"name": "Quinton",
+				"type": "String"
+			},
+			{
+				"name": "Brisseau",
+				"type": "String"
+			},
+			{
+				"name": "qbrisseau0@mac.com",
+				"type": "String"
+			},
+			{
+				"name": "Male",
+				"type": "String"
+			},
+			{
+				"name": "90.154.61.224",
+				"type": "String"
+			}
+		]
+	}
+}
