@@ -44,7 +44,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"maxRowsPerFile": 1,
-							"fileNamePrefix": "[n]",
+							"fileNamePrefix": "",
 							"quoteAllText": true,
 							"fileExtension": ".txt"
 						}
