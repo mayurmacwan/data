@@ -1,0 +1,36 @@
+{
+	"name": "df_splitter",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "BatchedDSV2",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CRN as short,",
+				"          EPOS_NUMBER as short,",
+				"          COMMUNICATION_ADDRESS as long,",
+				"          CLEANSE_CODE as string,",
+				"          CLEANSE_DATE as date",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(linenumber = ERROR_FUNCTION('')) ~> derivedColumn1"
+			]
+		}
+	}
+}
