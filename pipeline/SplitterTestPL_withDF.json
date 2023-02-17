@@ -29,7 +29,8 @@
 					"dataset": {
 						"referenceName": "BatchedDSV2",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
